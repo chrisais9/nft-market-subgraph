@@ -2,7 +2,7 @@ specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
-  - kind: ethereum
+  - kind: ethereum/contract
     name: ERC721NFTMarketPlace
     network: rinkeby
     source:
@@ -13,20 +13,13 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
+      file: ./src/mapping.ts
       entities:
-        - AskCancel
-        - AskNew
-        - AskUpdate
-        - CollectionClose
-        - CollectionNew
-        - CollectionUpdate
-        - NewAdminAndTreasuryAddresses
-        - NewMinimumAndMaximumAskPrices
-        - NonFungibleTokenRecovery
-        - OwnershipTransferred
-        - RevenueClaim
-        - TokenRecovery
-        - Trade
+        - Collection
+        - NFT
+        - User
+        - AskOrder
+        - Transaction
       abis:
         - name: ERC721NFTMarketPlace
           file: ./abis/ERC721NFTMarketPlace.json
@@ -45,18 +38,7 @@ dataSources:
           handler: handleCollectionNew
         - event: CollectionUpdate(indexed address,indexed address,indexed address,uint256,uint256)
           handler: handleCollectionUpdate
-        - event: NewAdminAndTreasuryAddresses(indexed address,indexed address)
-          handler: handleNewAdminAndTreasuryAddresses
-        - event: NewMinimumAndMaximumAskPrices(uint256,uint256)
-          handler: handleNewMinimumAndMaximumAskPrices
-        - event: NonFungibleTokenRecovery(indexed address,indexed uint256)
-          handler: handleNonFungibleTokenRecovery
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
         - event: RevenueClaim(indexed address,uint256)
           handler: handleRevenueClaim
-        - event: TokenRecovery(indexed address,uint256)
-          handler: handleTokenRecovery
         - event: Trade(indexed address,indexed uint256,indexed address,address,uint256,uint256,bool)
           handler: handleTrade
-      file: ./src/mapping.ts
