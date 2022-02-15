@@ -29,6 +29,8 @@ dataSources:
       abis:
         - name: ERC721NFTMarketPlace
           file: ./abis/ERC721NFTMarketPlace.json
+        - name: IERC721
+          file: ./abis/IERC721.json
       eventHandlers:
         - event: AskCancel(indexed address,indexed address,indexed uint256)
           handler: handleAskCancel
