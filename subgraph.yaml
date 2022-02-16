@@ -13,7 +13,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
-      file: ./src/mapping.ts
+      file: ./mappings/index.ts
       entities:
         - Collection
         - NFT
