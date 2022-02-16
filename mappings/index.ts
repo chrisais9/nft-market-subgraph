@@ -266,8 +266,12 @@ export function handleTrade(event: Trade): void {
 
   transaction.save();
   buyer.save();
-  seller?.save();
-  token?.save();
+  if (seller !== null) {
+    seller.save();
+  }
+  if (token !== null) {
+    token.save();
+  }
 
   updateCollectionDayData(event.params.collection, toBigDecimal(event.params.askPrice, 18), event);
   updateMarketPlaceDayData(toBigDecimal(event.params.askPrice, 18), event);
